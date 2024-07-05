@@ -5,6 +5,8 @@ import org.sparta.springlv2.dto.BookResponseDto;
 import org.sparta.springlv2.service.BookService;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api")
 public class BookController {
@@ -23,5 +25,10 @@ public class BookController {
     @GetMapping("/book/{bookId}")
     public BookResponseDto getBook(@PathVariable Long bookId) {
         return bookService.getBook(bookId);
+    }
+
+    @GetMapping("/books")
+    public List<BookResponseDto> getBooks() {
+        return bookService.getBooks();
     }
 }

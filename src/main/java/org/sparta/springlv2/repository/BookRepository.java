@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface BookRepository extends JpaRepository<Book, Long> {
     List<Book> findFirstByBookId(Long bookId);
-    List<Book> findAll();
+    List<Book> findAllByOrderByCreatedAt();
 }

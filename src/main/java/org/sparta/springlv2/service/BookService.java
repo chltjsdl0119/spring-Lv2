@@ -6,6 +6,8 @@ import org.sparta.springlv2.entity.Book;
 import org.sparta.springlv2.repository.BookRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class BookService {
     private final BookRepository bookRepository;
@@ -25,5 +27,9 @@ public class BookService {
         Book book = bookRepository.findFirstByBookId(bookId).get(0);
         BookResponseDto bookResponseDto = new BookResponseDto(book);
         return bookResponseDto;
+    }
+
+    public List<BookResponseDto> getBooks() {
+        return bookRepository.findAllByOrderByCreatedAt().stream().map(BookResponseDto::new).toList();
     }
 }
