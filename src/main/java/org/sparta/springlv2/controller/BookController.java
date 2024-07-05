@@ -19,4 +19,9 @@ public class BookController {
     public BookResponseDto createBook(@RequestBody BookRequestDto bookRequestDto) {
         return bookService.createBook(bookRequestDto);
     }
+
+    @GetMapping("/book/{bookId}")
+    public BookResponseDto getBook(@PathVariable Long bookId) {
+        return bookService.getBook(bookId);
+    }
 }

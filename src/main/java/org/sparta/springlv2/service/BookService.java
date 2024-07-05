@@ -20,4 +20,10 @@ public class BookService {
         BookResponseDto bookResponseDto = new BookResponseDto(book);
         return bookResponseDto;
     }
+
+    public BookResponseDto getBook(Long bookId) {
+        Book book = bookRepository.findFirstByBookId(bookId).get(0);
+        BookResponseDto bookResponseDto = new BookResponseDto(book);
+        return bookResponseDto;
+    }
 }
