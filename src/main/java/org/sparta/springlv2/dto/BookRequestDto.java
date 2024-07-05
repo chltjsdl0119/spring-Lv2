@@ -1,0 +1,13 @@
+package org.sparta.springlv2.dto;
+
+import lombok.Getter;
+
+import java.time.LocalDate;
+
+@Getter
+public class BookRequestDto {
+    private String title;
+    private String author;
+    private String language;
+    private String publisher;
+}

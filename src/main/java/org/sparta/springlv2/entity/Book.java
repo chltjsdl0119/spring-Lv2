@@ -5,8 +5,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.sparta.springlv2.dto.BookRequestDto;
 
-import java.time.LocalDate;
-
 @Entity
 @Getter
 @Table(name = "book")
@@ -28,4 +26,11 @@ public class Book extends Timestamped {
 
     @Column(name = "publisher", nullable = false)
     private String publisher;
+
+    public Book(BookRequestDto requestDto) {
+        this.title = requestDto.getTitle();
+        this.author = requestDto.getAuthor();
+        this.language = requestDto.getLanguage();
+        this.publisher = requestDto.getPublisher();
+    }
 }
