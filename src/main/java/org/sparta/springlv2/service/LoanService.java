@@ -6,7 +6,6 @@ import org.sparta.springlv2.entity.User;
 import org.sparta.springlv2.repository.BookRepository;
 import org.sparta.springlv2.repository.LoanRepository;
 import org.sparta.springlv2.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -53,5 +52,29 @@ public class LoanService {
 
         loanRepository.save(loan);
         return "Loan created successfully!";
+    }
+
+    @Transactional
+    public String returnBook(Long userId, Long bookId) {
+        Optional<User> userOptional = userRepository.findByUserId(userId);
+        if (userOptional.isEmpty()) {
+            return "User not found!";
+        }
+
+        Optional<Book> bookOptional = bookRepository.findByBookId(bookId);
+        if (bookOptional.isEmpty()) {
+            return "Book not found!";
+        }
+
+        Optional<Loan> loanOptional = loanRepository.findByUserIdAndBookIdAndReturnStatusIsFalse(userId, bookId);
+        if (loanOptional.isEmpty()) {
+            return "Loan not found!";
+        }
+
+        Loan loan = loanOptional.get();
+        loan.setReturnStatus(true);
+
+        loanRepository.save(loan);
+        return "Book returned successfully!";
     }
 }

@@ -20,4 +20,10 @@ public class LoanController {
         String result = loanService.loanBook(loanRequestDto.getUserId(), loanRequestDto.getBookId());
         return result;
     }
+
+    @PostMapping("/return")
+    public String returnPost(@RequestBody LoanRequestDto loanRequestDto) {
+        String result = loanService.returnBook(loanRequestDto.getUserId(), loanRequestDto.getBookId());
+        return result;
+    }
 }
