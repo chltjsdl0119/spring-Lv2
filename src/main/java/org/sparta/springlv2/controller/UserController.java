@@ -1,5 +1,6 @@
 package org.sparta.springlv2.controller;
 
+import org.sparta.springlv2.dto.LoanRecordResponseDto;
 import org.sparta.springlv2.dto.UserRequestDto;
 import org.sparta.springlv2.dto.UserResponseDto;
 import org.sparta.springlv2.service.UserService;
@@ -19,4 +20,10 @@ public class UserController {
     public UserResponseDto createUser(@RequestBody UserRequestDto userRequestDto) {
         return userService.createUser(userRequestDto);
     }
+
+    @GetMapping("/user/{userId}")
+    public LoanRecordResponseDto getRecord(@PathVariable Long userId) {
+        return userService.getRecord(userId);
+    }
+
 }

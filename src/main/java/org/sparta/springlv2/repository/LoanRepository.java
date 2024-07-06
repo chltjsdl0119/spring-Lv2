@@ -9,4 +9,5 @@ public interface LoanRepository extends JpaRepository<Loan, Long> {
     boolean existsByUserIdAndReturnStatusIsFalse(Long userId);
     boolean existsByBookIdAndReturnStatusIsFalse(Long bookId);
     Optional<Loan> findByUserIdAndBookIdAndReturnStatusIsFalse(Long userId, Long bookId);
+    Optional<Loan> findByUserIdAndReturnStatusIsFalse(Long loanId);
 }
