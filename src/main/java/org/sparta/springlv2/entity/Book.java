@@ -27,10 +27,17 @@ public class Book extends Timestamped {
     @Column(name = "publisher", nullable = false)
     private String publisher;
 
+//    @Column(name = "loans_available", nullable = false)
+//    private boolean loansAvailable = true;
+
     public Book(BookRequestDto requestDto) {
         this.title = requestDto.getTitle();
         this.author = requestDto.getAuthor();
         this.language = requestDto.getLanguage();
         this.publisher = requestDto.getPublisher();
     }
+
+//    public void setLoansAvailable(boolean loansAvailable) {
+//        this.loansAvailable = loansAvailable;
+//    }
 }

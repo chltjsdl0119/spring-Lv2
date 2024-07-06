@@ -29,6 +29,9 @@ public class User {
     @Column(name = "address", nullable = false)
     private String address;
 
+//    @Column(name = "loans_available", nullable = false)
+//    private boolean loansAvailable = true;
+
     public User(UserRequestDto requestDto) {
         this.username = requestDto.getUsername();
         this.sex = requestDto.getSex();
@@ -36,4 +39,8 @@ public class User {
         this.phNum = requestDto.getPhNum();
         this.address = requestDto.getAddress();
     }
+
+//    public void setLoansAvailable(boolean loansAvailable) {
+//        this.loansAvailable = loansAvailable;
+//    }
 }

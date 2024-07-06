@@ -1,6 +1,5 @@
 package org.sparta.springlv2.dto;
 
-import jakarta.persistence.Column;
 import lombok.Getter;
 
 @Getter

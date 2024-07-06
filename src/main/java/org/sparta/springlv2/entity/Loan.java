@@ -3,8 +3,14 @@ package org.sparta.springlv2.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import java.time.LocalDateTime;
 
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 @Getter
 @Table(name = "loan")
 @NoArgsConstructor
@@ -21,11 +27,24 @@ public class Loan {
     private Long userId;
 
     @Column(name = "return_status", nullable = false)
-    private boolean returnStatus;
+    private boolean returnStatus = false;
 
-    @Column(name = "loan_date", nullable = false)
-    private String loanDate;
+    @CreatedDate
+    @Column(updatable = false)
+    @Temporal(TemporalType.TIMESTAMP)
+    private LocalDateTime loanDate;
 
-    @Column(name = "return_date", nullable = false)
-    private String returnDate;
+    @LastModifiedDate
+    @Temporal(TemporalType.TIMESTAMP)
+    private LocalDateTime returnDate;
+
+
+    public Loan(User user, Book book) {
+        this.userId = user.getUserId();
+        this.bookId = book.getBookId();
+    }
+
+    public void setReturnStatus(boolean returnStatus) {
+        this.returnStatus = returnStatus;
+    }
 }
